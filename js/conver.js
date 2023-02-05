@@ -1,3 +1,5 @@
+const values = document.querySelectorAll('.canver__box-value')
+
 async function getCurrencies () {
   const url = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
 
@@ -6,11 +8,13 @@ async function getCurrencies () {
 
   console.log(data);
 
-  data.forEach(el => {
-    if (el.cc === 'AUD') {
-      console.log(el.rate);
+  for (let item of values) {
+    for (let el of data) {
+      if (item.dataset.value === el.cc) [
+        item.textContent = el.rate.toFixed(2)
+      ]
     }
-  })
+  }
 }
 
 getCurrencies()
