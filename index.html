@@ -1,47 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Calculator && Carrency converter</title>
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/styleCalc.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calculator && Currency converter</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styleCalc.css" />
+    <link rel="stylesheet" href="css/styleConver.css" />
   </head>
   <body>
-    <div class="calc">
-      <div class="calc__screen">
-        <span class="calc__screen-text">0</span>
-        <!-- <p class="calc__screen-result">0</p> -->
+    <div class="container">
+      <div class="calc">
+        <div class="calc__screen">
+          <span class="calc__screen-text">0</span>
+          <!-- <p class="calc__screen-result">0</p> -->
+        </div>
+        <div class="calc__buttons">
+          <div class="calc__btn ac bg-gray">AC</div>
+          <div class="calc__btn array bg-gray">←</div>
+          <!-- <div class="calc__btn percent bg-gray">%</div> -->
+          <div class="calc__btn division bg-orange">/</div>
+
+          <div class="calc__btn seven">7</div>
+          <div class="calc__btn eight">8</div>
+          <div class="calc__btn nine">9</div>
+          <div class="calc__btn myltiplay bg-orange">*</div>
+
+          <div class="calc__btn four">4</div>
+          <div class="calc__btn five">5</div>
+          <div class="calc__btn six">6</div>
+          <div class="calc__btn minus bg-orange">-</div>
+
+          <div class="calc__btn one">1</div>
+          <div class="calc__btn two">2</div>
+          <div class="calc__btn three">3</div>
+          <div class="calc__btn plus bg-orange">+</div>
+
+          <div class="calc__btn zero">0</div>
+          <div class="calc__btn dot">.</div>
+          <div class="calc__btn equal bg-orange">=</div>
+        </div>
       </div>
-      <div class="calc__buttons">
-        <div class="calc__btn ac bg-gray">AC</div>
-        <div class="calc__btn array bg-gray">←</div>
-        <!-- <div class="calc__btn percent bg-gray">%</div> -->
-        <div class="calc__btn division bg-orange">/</div>
-        
-        <div class="calc__btn seven">7</div>
-        <div class="calc__btn eight">8</div>
-        <div class="calc__btn nine">9</div>
-        <div class="calc__btn myltiplay bg-orange">*</div>
 
-        <div class="calc__btn four">4</div>
-        <div class="calc__btn five">5</div>
-        <div class="calc__btn six">6</div>
-        <div class="calc__btn minus bg-orange">-</div>
-        
-        <div class="calc__btn one">1</div>
-        <div class="calc__btn two">2</div>
-        <div class="calc__btn three">3</div>
-        <div class="calc__btn plus bg-orange">+</div>
+      <div class="canver">
+        <form class="form">
+          <h1 class="canver__title">Конвертер валют</h1>
+          <div class="canver__top">
+            <div class="canver__top-box">
+              <h5 class="canver__box-title">Курс USD</h5>
+							<p class="canver__box-value" data-value="USD">--.--</p>
+            </div>
+            <div class="canver__top-box">
+              <h5 class="canver__box-title">Курс EUR</h5>
+							<p class="canver__box-value" data-value="EUR">--.--</p>
+            </div>
+            <div class="canver__top-box">
+              <h5 class="canver__box-title">Курс GPB</h5>
+							<p class="canver__box-value" data-value="GBP">--.--</p>
+            </div>
+          </div>
 
-        <div class="calc__btn zero">0</div>
-        <div class="calc__btn dot">.</div>
-        <div class="calc__btn equal bg-orange">=</div>
-        
+          <div class="canver__row">
+            <div class="canver__row-box">
+              <label for="name">Отдаю:</label>
+              <select class="canver__row-select" id="" disabled>
+                <option value="RUB" selected>UAH — Гривня</option>
+              </select>
+            </div>
+            <div class="canver__row-box">
+              <label for="name">Получаю:</label>
+              <select class="canver__row-select" id="select">
+                <option value="USD">USD — Доллар США</option>
+								<option value="EUR">EUR — Євро</option>
+								<option value="GBP">GPB — Фунт стерлингів</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="canver__bottom">
+            <input id="input" class="canver__bottom-input" type="number" autofocus>
+            <input id="result" class="canver__bottom-input" type="number">
+          </div>
+        </form>
       </div>
     </div>
 
     <script src="js/calc.js"></script>
+    <script src="js/conver.js"></script>
   </body>
 </html>
