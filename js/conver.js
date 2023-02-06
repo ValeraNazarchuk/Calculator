@@ -4,6 +4,8 @@ const select = document.querySelector('#select')
 const input = document.querySelector('#input')
 const result = document.querySelector('#result')
 
+setInterval(getCurrencies, 60000)
+
 async function getCurrencies () {
   const currency = {}
 
@@ -14,12 +16,13 @@ async function getCurrencies () {
   
   for (let item of values) {
     for (let el of data) {
-      if (item.dataset.value === el.cc) [
+      if (item.dataset.value === el.cc) (
         currency[el.cc] = el.rate.toFixed(2),
         item.textContent = el.rate.toFixed(2)
-      ]
+      )
     }
   }
+
   return currency
 }
 
