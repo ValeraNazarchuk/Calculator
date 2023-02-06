@@ -7,7 +7,9 @@
   display: flex;
   flex-direction: column;
   padding: 15px;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
+  background-color: #000;
+  color: #fff;
   border-radius: 15px;
 }
 
@@ -19,7 +21,8 @@
 
 .canver__top-box {
   padding: 20px;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
+  background-color: #333;
   border-radius: 15px;
   text-align: center;
 }
@@ -45,6 +48,9 @@
 
 .canver__row-select {
   padding: 10px 5px;
+  background-color: #333;
+  color: #fff;
+  border: none;
 }
 
 .canver__bottom {
@@ -55,6 +61,9 @@
 }
 
 .canver__bottom-input {
+  border: none;
+  background-color: #333;
+  color: #fff;
   padding: 10px 5px;
   width: 100%;
   outline: none;
