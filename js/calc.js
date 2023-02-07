@@ -1,68 +1,98 @@
-const text = document.querySelector('.calc__screen-text')
-const buttons = document.querySelectorAll('.calc__buttons')
+const input = document.querySelector('.calc__screen-text')
 
-const arrayValue = []
+// збережена часть виразу для повернення в степінь
+let power = ''
 
-buttons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('calc__btn')) return
+// вставити/додати символ
+function insert(num) {
+  if (input.textContent == 0) { 
+    input.textContent = ''
+    input.textContent += num
+  } else {
+    input.textContent += num
+  }
+}
 
-    const value = e.target.innerText
+// почистити все поле
+function clean() {
+  input.textContent = '0'
+  power = ''
+}
 
-    const sign = ['.', '+', '-', '*', '/', '=']
-    const firstArray = arrayValue[arrayValue.length - 1]
+// удрати останній символ
+function back() {
+  let exp = input.textContent
+  input.textContent = exp.substring(0, exp.length -1)
+  if (input.textContent == 0) {
+    input.textContent = '0'
+  }
+}
 
-    if (value === 'AC') {
-      arrayValue.splice(0, arrayValue.length)
-      text.innerText = '0'
-      return
-    }
+// порахувати все
+function equal() {
+  if (input.textContent.includes('^')) {
+    let tmp = input.textContent.split('^')
+    let num = eval(power)
+    let pow = +tmp[1]
+    input.textContent = Math.pow(num,pow)
+    power = ''
+    return
+  }
+  if (input.textContent) {
+    input.textContent = eval(input.textContent)
+  }
+}
 
-    if (value === '←') {
-      if (arrayValue.length < 2) {
-        arrayValue.pop()
-        text.innerText = '0'
-        return
-      } else {
-        arrayValue.pop()
-        text.innerText = arrayValue.join('')
-        return
-      }
-    }
+// вирахування процентів
+function percent() {
+  input.textContent = eval(input.textContent)/100
+}
 
-    if (value === '=') {
-      if (text.innerText.search(/[^0-9/+-.*]/im) != -1) return
+// для додавання констант
+function constant(event) {
+  if(input.textContent == 0) {
+    input.textContent = ''
+  }
+  if (event === 'pi'){
+    input.textContent += Math.PI.toFixed(8)
+  }
+  if (event === 'e') {
+    input.textContent += Math.E.toFixed(8)
+  }
+}
 
-      if (eval(text.innerText) === Infinity) {
-        text.innerText = 'Error'
-        return
-      } else {
-        text.innerText = eval(text.innerText)
-        arrayValue.splice(0, arrayValue.length, ...text.innerText)
-        return
-      }
-    }
+// корінь квадратний
+function operation(event) {
+  if (event === 'sqrt') {
+    input.textContent = Math.sqrt(eval(input.textContent))
+  }
+  if (event === 'sqr') {
+    input.textContent = Math.pow(eval(input.textContent), 2).toFixed(8)
+  }
+  if (event === '^-1') {
+    input.textContent = Math.pow(eval(input.textContent), -1).toFixed(8)
+  }
+  if (event === '^') {
+    power = input.textContent
+    input.textContent += '^'
+  }
+}
 
-    if (sign.includes(value) && sign.includes(firstArray)) {
-      arrayValue.pop()
-      text.innerText = arrayValue.join('').concat(value)
-      arrayValue.push(value)
-      return
-    }
+// факторіал числа
+function factorial(n) {
+  return (n != 1) ? n * factorial(n - 1) : 1
+}
 
-    if (text.innerText === '0') {
-      if (value === '.') {
-        arrayValue.push(value)
-        text.innerText += value
-        return
-      } else if (!sign.includes(value)) {
-        arrayValue.push(value)
-        text.innerText = value
-        return
-      }
-    } else {
-      arrayValue.push(value)
-      text.innerText += value
-    }
-  })
-})
+function fact() {
+  input.textContent = factorial(+eval(input.textContent))
+}
+
+// логоріфми
+function log(event) {
+  if (event === 'lg') {
+    input.textContent = Math.log10(eval(input.textContent)).toFixed(8)
+  }
+  if (event === 'ln') [
+    input.textContent = Math.log10(eval(input.textContent)).toFixed(8)
+  ]
+}
