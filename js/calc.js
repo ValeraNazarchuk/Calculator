@@ -7,12 +7,11 @@ let power = ''
 
 // вставити/додати символ
 function insert(num) {
+  if (input.textContent === 'Error') input.textContent = '0'
   if (input.textContent === '0') {
-    if (num === '.') {
+    if(sings.includes(num)) {
       input.textContent += num
-      return
-    } 
-    if(!sings.includes(num)) {
+    } else {
       input.textContent = num
     }
   } else {
@@ -34,7 +33,7 @@ function clean() {
 // удрати останній символ
 function back() {
   let exp = input.textContent
-  input.textContent = exp.substring(0, exp.length -1)
+  input.textContent = exp.slice(0, exp.length -1)
   if (!input.textContent) {
     input.textContent = '0'
   }
@@ -46,12 +45,12 @@ function equal() {
     let tmp = input.textContent.split('^')
     let num = eval(power)
     let pow = +tmp[1]
-    input.textContent = Math.pow(num,pow)
+    input.textContent = Math.pow(num, pow) === Infinity ? 'Error' : Math.pow(num, pow)
     power = ''
     return
   }
   if (input.textContent) {
-    input.textContent = eval(input.textContent)
+    input.textContent = eval(input.textContent) === Infinity ? 'Error' : eval(input.textContent)
   }
 }
 
@@ -80,7 +79,7 @@ function operation(event) {
     input.textContent = Math.sqrt(eval(input.textContent))
   }
   if (event === 'sqr') {
-    input.textContent = Math.pow(eval(input.textContent), 2).toFixed(8)
+    input.textContent = Math.pow(eval(input.textContent), 2)
   }
   if (event === '^-1') {
     input.textContent = Math.pow(eval(input.textContent), -1).toFixed(8)
@@ -107,7 +106,7 @@ function log(event) {
   if (event === 'lg') {
     input.textContent = Math.log10(eval(input.textContent)).toFixed(8)
   }
-  if (event === 'ln') [
-    input.textContent = Math.log10(eval(input.textContent)).toFixed(8)
-  ]
+  if (event === 'ln') {
+    input.textContent = Math.log(eval(input.textContent)).toFixed(8)
+  }
 }
