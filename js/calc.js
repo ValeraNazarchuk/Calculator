@@ -1,14 +1,26 @@
 const input = document.querySelector('.calc__screen-text')
 
+const sings = ['/', '*', '-', '+', '.']
+
 // збережена часть виразу для повернення в степінь
 let power = ''
 
 // вставити/додати символ
 function insert(num) {
-  if (input.textContent == 0) { 
-    input.textContent = ''
-    input.textContent += num
+  if (input.textContent === '0') {
+    if (num === '.') {
+      input.textContent += num
+      return
+    } 
+    if(!sings.includes(num)) {
+      input.textContent = num
+    }
   } else {
+    const last = input.textContent.toString().slice(-1)
+    if (sings.includes(num) && sings.includes(last)) {
+      input.textContent = input.textContent.slice(0, input.textContent.length - 1).concat(num)
+      return
+    }
     input.textContent += num
   }
 }
@@ -23,7 +35,7 @@ function clean() {
 function back() {
   let exp = input.textContent
   input.textContent = exp.substring(0, exp.length -1)
-  if (input.textContent == 0) {
+  if (!input.textContent) {
     input.textContent = '0'
   }
 }
@@ -63,6 +75,7 @@ function constant(event) {
 
 // корінь квадратний
 function operation(event) {
+  if (input.textContent === '0') return
   if (event === 'sqrt') {
     input.textContent = Math.sqrt(eval(input.textContent))
   }
@@ -84,11 +97,13 @@ function factorial(n) {
 }
 
 function fact() {
+  if (input.textContent === '0') return
   input.textContent = factorial(+eval(input.textContent))
 }
 
 // логоріфми
 function log(event) {
+  if (input.textContent === '0') return
   if (event === 'lg') {
     input.textContent = Math.log10(eval(input.textContent)).toFixed(8)
   }
